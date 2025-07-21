@@ -16,7 +16,6 @@ const Browse = () => {
     useTopRatesMovies();
     useUpComingMovies();
     const searchView = useSelector(store => store.gpt.toggleSearchView);
-    console.log('***********', searchView)
     return (
         <div>
             <Header />

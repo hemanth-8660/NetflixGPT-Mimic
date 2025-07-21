@@ -5,14 +5,23 @@ import GptMovieSuggestions from "./GptMovieSuggestions";
 
 const GptSearch = (props) => {
   return (
-    <div>
-      <div className="absolute -z-[52]">
-        <img src={NETFLIX_BODY} alt="logo"/>
-      </div>
-        <GptSearchBar/>
-        <GptMovieSuggestions/>
-    </div>
-    
+<>
+  {/* Background Image */}
+  <div className="fixed inset-0 -z-[52]">
+    <img
+      src={NETFLIX_BODY}
+      alt="logo"
+      className="h-full w-full object-cover"
+    />
+  </div>
+
+  {/* Foreground Content */}
+  <div className="relative z-10 min-h-screen flex flex-col items-center px-4 py-8">
+    <GptSearchBar />
+    <GptMovieSuggestions />
+  </div>
+</>
+
   )
 };
 

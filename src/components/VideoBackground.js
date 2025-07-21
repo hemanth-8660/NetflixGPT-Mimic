@@ -7,7 +7,7 @@ import { useState } from "react";
 const VideoBackground = ({movieId}) => {
     const dispatch = useDispatch();
     const [trailerVideo, setTrailerVideo] = useState(null);
-    // const trailer = useSelector(store => store.videos?.trailerVideo);
+    const trailer = useSelector(store => store.videos?.trailerVideo);
     async function getVideos() {
         let videos = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos`, API_OPTIONS);
         videos = await videos.json();
@@ -21,7 +21,7 @@ const VideoBackground = ({movieId}) => {
 
     useEffect(() => {
         // get all videos assocaitd to movieid
-        getVideos();
+        !trailer && getVideos();
     }, [])
 
     if (!trailerVideo) return;

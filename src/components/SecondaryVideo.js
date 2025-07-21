@@ -10,7 +10,6 @@ const nowPlayingMovies = videos.nowPlayingMovies?.results;
 const popularMovies = videos.popularMovies?.results;
 const topRatesMovies = videos.topRatedMovies?.results;
 const upComingMovies = videos.upComingMovies?.results;
-console.log('upComingMovies', upComingMovies)
   return (
     <div className="bg-black">
       <div className="-mt-[20px]">

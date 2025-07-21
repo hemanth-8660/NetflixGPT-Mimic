@@ -9,11 +9,13 @@ import { AVATAR,langSelection,NETFLIX_IMAGE } from "../utils/constants";
 import Logout from "./Logout";
 import { toggleSearch } from "../utils/gptSlice";
 import { chooseLanguage } from "../utils/langSlice";
+import { clearGpt } from "../utils/gptSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
+  const gptMovies = useSelector(store => store.gpt.movies);
   const searchView = useSelector(store => store.gpt.toggleSearchView);
    useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -36,17 +38,18 @@ const Header = () => {
 
   
     function toggleSearchButton() {
-      console.log('searchView',searchView)
       dispatch(toggleSearch());
+      if (!searchView) {
+        dispatch(clearGpt())
+      }
     }
 
     function handleLanguage(e) {
-      console.log('e00000000000', e)
       dispatch(chooseLanguage(e.target.value))
     }
   return (
-    <div className="absolute w-screen bg-gradient-to-b from-black z-10 opacity-80 flex justify-between">
-        <img className="w-44 px-4 " 
+    <div className="absolute w-screen bg-gradient-to-b from-black z-10 opacity-120 flex flex-col md:flex-row justify-between">
+        <img className="w-44 mx-auto md:mx-0" 
           src= {`${NETFLIX_IMAGE}`}
           alt="logo"
         />
@@ -64,6 +67,7 @@ const Header = () => {
 
         <button className="px-4 py-1 mr-28 my-5 rounded-lg bg-purple-800 text-white" onClick={toggleSearchButton}>
           {searchView ? 'GPT': 'Homepage'}
+         
         </button>
         
         {

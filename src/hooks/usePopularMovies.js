@@ -5,8 +5,9 @@ import { API_OPTIONS } from "../utils/constants";
 
 const usePopularMovies = () => {
     const disPatch = useDispatch();
+    const popularMovies = useSelector(state => state.movies.popularMovies) 
     useEffect(() => {
-        getPopularMovies();
+        !popularMovies && getPopularMovies();
     }, []);
 
     async function getPopularMovies() {
